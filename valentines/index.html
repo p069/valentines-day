@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Go Out With Me?</title>
+    <style>
+        body {
+            font-family: 'Comic Neue', cursive;
+            text-align: center;
+            margin: 50px;
+            background-color: #ffb3dd;
+            position: relative;
+            overflow: hidden;
+        }
+        .container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #catImage {
+            width: 250px;
+            display: block;
+            margin-top: 20px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 20px;
+        }
+        .btn {
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .yes-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .no-btn {
+            background-color: #f44336;
+            color: white;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <h1>Will You Be My Valentine's??</h1>
+    <div class="container">
+        <img id="catImage" src="images/oia-uia.gif" alt="Funny Cat">
+        <div class="button-container">
+            <button class="btn yes-btn" onclick="sayYes()">Yes</button>
+            <button class="btn no-btn" id="noButton" onclick="sayNo()">No</button>
+        </div>
+    </div>
+    <p id="message"></p>
+
+    <script>
+        let messages = [
+            "Are you sure? 😢",
+            "Please reconsider... 🥺",
+            "But I got you a cat! 🐱",
+            "Think about the cute dates! 💕",
+            "I'll be very sad... 😭",
+            "Final chance! Don't break my heart! 💔",
+            "I'm hoping you'd say yes...",
+            "tum pagal hai kya ?? :/ ",
+            "I'll be waiting for a yes"
+        ];
+        let index = 0;
+
+        function sayYes() {
+            document.getElementById("message").innerText = "Yay! Can't wait! 💖";
+        }
+
+        function sayNo() {
+            document.getElementById("message").innerText = messages[index];
+            index = (index + 1) % messages.length;
+            moveNoButton();
+        }
+
+        function moveNoButton() {
+            let button = document.getElementById("noButton");
+            let x, y;
+            do {
+                x = Math.random() * (window.innerWidth - 200);
+                y = Math.random() * (window.innerHeight - 100);
+            } while (Math.abs(x - window.innerWidth / 2) < 150 && Math.abs(y - window.innerHeight / 2) < 100);
+            button.style.left = `${x}px`;
+            button.style.top = `${y}px`;
+        }
+    </script>
+</body>
+</html>
